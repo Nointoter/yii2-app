@@ -9,14 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property int $cities_id
- * @property int $companies_id
  * @property string|null $name
  * @property string|null $surname
  *
  * @property Cities $cities
- * @property Companies $companies
+ * @property Compworkers[] $compworkers
  */
-class workers extends \yii\db\ActiveRecord
+class Workers extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -32,11 +31,11 @@ class workers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cities_id', 'companies_id'], 'required'],
-            [['cities_id', 'companies_id'], 'integer'],
-            [['name', 'surname'], 'string', 'max' => 255],
+            [['cities_id'], 'required'],
+            [['cities_id'], 'integer'],
+            [['surname'], 'string'],
+            [['name'], 'string', 'max' => 255],
             [['cities_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cities::class, 'targetAttribute' => ['cities_id' => 'id']],
-            [['companies_id'], 'exist', 'skipOnError' => true, 'targetClass' => Companies::class, 'targetAttribute' => ['companies_id' => 'id']],
         ];
     }
 
@@ -48,7 +47,6 @@ class workers extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'cities_id' => 'Cities ID',
-            'companies_id' => 'Companies ID',
             'name' => 'Name',
             'surname' => 'Surname',
         ];
@@ -65,12 +63,12 @@ class workers extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Companies]].
+     * Gets query for [[Compworkers]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCompanies()
+    public function getCompworkers()
     {
-        return $this->hasOne(Companies::class, ['id' => 'companies_id']);
+        return $this->hasMany(Compworkers::class, ['workers_id' => 'id']);
     }
 }

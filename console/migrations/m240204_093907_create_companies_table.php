@@ -8,7 +8,7 @@ use yii\db\Migration;
  *
  * - `{{%cities}}`
  */
-class m240203_130235_create_companies_table extends Migration
+class m240204_093907_create_companies_table extends Migration
 {
     /**
      * {@inheritdoc}

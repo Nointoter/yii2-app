@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
- * @property int|null $region-number
+ * @property int $region-number
  *
  * @property Companies[] $companies
  * @property Workers[] $workers
@@ -30,10 +30,9 @@ class Cities extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'region-number'], 'required'],
             [['region-number'], 'integer'],
             [['name'], 'string', 'max' => 255],
-            [['name'], 'unique'],
         ];
     }
 

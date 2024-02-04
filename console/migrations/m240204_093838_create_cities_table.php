@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%cities}}`.
  */
-class m240203_100201_create_cities_table extends Migration
+class m240204_093838_create_cities_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,8 +14,8 @@ class m240203_100201_create_cities_table extends Migration
     {
         $this->createTable('{{%cities}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull()->unique(),
-            'region-number' => $this->integer(),
+            'name' => $this->string()->notNull(),
+            'region-number' => $this->integer()->notNull(),
         ]);
     }
 

@@ -13,9 +13,9 @@ use Yii;
  * @property string|null $info
  *
  * @property Cities $cities
- * @property Workers[] $workers
+ * @property Compworkers[] $compworkers
  */
-class companies extends \yii\db\ActiveRecord
+class Companies extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -63,12 +63,12 @@ class companies extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Workers]].
+     * Gets query for [[Compworkers]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getWorkers()
+    public function getCompworkers()
     {
-        return $this->hasMany(Workers::class, ['companies_id' => 'id']);
+        return $this->hasMany(Compworkers::class, ['companies_id' => 'id']);
     }
 }

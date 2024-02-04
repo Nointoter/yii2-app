@@ -7,9 +7,8 @@ use yii\db\Migration;
  * Has foreign keys to the tables:
  *
  * - `{{%cities}}`
- * - `{{%companies}}`
  */
-class m240203_130440_create_workers_table extends Migration
+class m240204_094239_create_workers_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -19,9 +18,8 @@ class m240203_130440_create_workers_table extends Migration
         $this->createTable('{{%workers}}', [
             'id' => $this->primaryKey(),
             'cities_id' => $this->integer()->notNull(),
-            'companies_id' => $this->integer()->notNull(),
             'name' => $this->string(),
-            'surname' => $this->string(),
+            'surname' => $this->text(),
         ]);
 
         // creates index for column `cities_id`
@@ -37,23 +35,6 @@ class m240203_130440_create_workers_table extends Migration
             '{{%workers}}',
             'cities_id',
             '{{%cities}}',
-            'id',
-            'CASCADE'
-        );
-
-        // creates index for column `companies_id`
-        $this->createIndex(
-            '{{%idx-workers-companies_id}}',
-            '{{%workers}}',
-            'companies_id'
-        );
-
-        // add foreign key for table `{{%companies}}`
-        $this->addForeignKey(
-            '{{%fk-workers-companies_id}}',
-            '{{%workers}}',
-            'companies_id',
-            '{{%companies}}',
             'id',
             'CASCADE'
         );
@@ -73,18 +54,6 @@ class m240203_130440_create_workers_table extends Migration
         // drops index for column `cities_id`
         $this->dropIndex(
             '{{%idx-workers-cities_id}}',
-            '{{%workers}}'
-        );
-
-        // drops foreign key for table `{{%companies}}`
-        $this->dropForeignKey(
-            '{{%fk-workers-companies_id}}',
-            '{{%workers}}'
-        );
-
-        // drops index for column `companies_id`
-        $this->dropIndex(
-            '{{%idx-workers-companies_id}}',
             '{{%workers}}'
         );
 

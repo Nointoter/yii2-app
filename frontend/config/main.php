@@ -36,6 +36,9 @@ return [
             ],
         ],
         'db' => $db,
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
